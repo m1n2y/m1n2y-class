@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span {
+            background-color: #28d1b7;
+            font-size: 25px;
+        }
+
+        .tip {
+            display: block;
+            position: absolute;
+            background-color: rgba(0, 0, 0, .5);
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<span id="here" data-age='18'>here！！！</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consequatur, earum impedit ipsa ipsam maxime placeat
+    quam rerum, similique, sunt ut veniam voluptatibus! Accusamus doloribus eum ex laboriosam sequi!</p>
+<p>Lo<span id="tip_trigger" data-direction='right'>YO</span> adipisicing elit. At
+    aut consequatur, earum impedit ipsa ipsam maxime placeat quam rerum, similique, sunt ut veniam voluptatibus!</p>
+<script>
+
+    var tip_trigger = document.querySelector('#tip_trigger');
+    var direction = tip_trigger.dataset.direction;
+
+    tip_trigger.addEventListener('mouseenter', function () {
+        if (document.querySelector('#tip'))
+            return;
+        var tip = show_tip();
+        position_tip(tip, direction);
+    });
+    tip_trigger.addEventListener('mouseleave', function () {
+        if (tip)
+            tip.remove();
+    });
+
+    function show_tip() {
+        var tip = document.createElement('a');
+        tip.id = 'tip';
+        tip.classList.add('tip');
+        tip.innerText = 'yooooooo';
+        document.body.appendChild(tip);
+        return tip;
+    }
+
+    //判断是否超出浏览器 判断所有显示的所有方向 not done yet
+    function isOver(trigger_position, tip) {
+        var dirc_arr = ['left','right','top','bottom'];
+        if (trigger_position.left < tip.offsetWidth + 2)
+            dirc_arr[0] = '';
+        if (trigger_position.left + trigger_position.width + tip.offsetWidth + 2 > document.body.clientWidth)
+            dirc_arr[1] = '';
+        if (trigger_position.top < tip.offsetHeight + 2)
+            dirc_arr[2] = '';
+        if (trigger_position.top + trigger_position.height + tip.offsetHeight + 2 > document.body.clientHeight)
+            dirc_arr[3] = '';
+    }
+
+    function position_tip(tip, direction) {
+        var position = tip_trigger.getBoundingClientRect();
+        //如果显示的方向 包含在所有可以显示的方向内 则继续执行
+        //isOver(position, tip);
+        switch (direction) {
+            case 'top':
+                tip.style.left = position.left + 'px';
+                tip.style.top = position.top - tip.offsetHeight - 2 + 'px';
+                break;
+            case 'bottom':
+                tip.style.left = position.left + 'px';
+                tip.style.top = position.top + tip.offsetHeight + 2 + 'px';
+                break;
+            case 'left':
+                tip.style.left = 190 + 'px';
+                tip.style.top = position.top + 'px';
+                break;
+            case 'right':
+                tip.style.left = position.left + position.width + 2 + 'px';
+                tip.style.top = position.top + 'px';
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+img{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+a{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row{
+    display: block;
+    font-size: 0;
+}
+
+.col{
+    display: inline-block;
+    font-size: 1rem;
+    vertical-align: top;
+}
+
+.col.right{
+    text-align: right;
+}

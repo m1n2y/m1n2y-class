@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{margin: 0; font-family: sans-serif, "Microsoft Sans Serif";font-size: 18px;}
+        a{display: inline-block; text-decoration: none;}
+        .row:before, .row:after{content: '';display: block;clear: both;}
+        .col{float: left;}
+        .left{width: 70%;}
+        .right{width: 30%;text-align: right;}
+        nav{background-color: rgba(0,0,0,.1);}
+        a{padding: 20px;color: #00ae66;font-weight: bold;display: inline-block;}
+        a:hover{background-color: rgba(0,0,0,.1);}
+        .item{display: inline-block;}
+        .show{display: inline-block !important;}
+        .menu-content,
+        .express-login-content,
+        .dropdown-content{
+            background-color: rgba(0,0,0,.1);
+            top: 61px;
+            width: 200px;
+        }
+
+        .menu-content a{
+            display: block;
+        }
+        .menu-content{
+            position: fixed;
+            bottom: 0;
+            left: -100%;
+            transition: left 0.5s;
+        }
+        .menu-content.show{
+            left: 0;
+        }
+
+        .mask{
+            background-color: rgba(0,0,0,.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+        .mask .login{
+            width: 400px;
+            margin: 200px auto;
+            background-color: white;
+            border: 1px solid #fae2b4;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .mask .login div{
+            margin-bottom: 10px;
+        }
+        .mask .login .close{
+            text-align: right;
+        }
+        .mask .login .close button{
+            padding: 5px;
+            font-size: 18px;
+        }
+
+        .express-login,
+        .dropdown{
+            position: relative;
+        }
+        .express-login-content a,
+        .dropdown-content a{
+            display: block;
+            text-align: center;
+        }
+        .express-login-content,
+        .dropdown-content{
+            position: absolute;
+            text-align: left;
+            display: none;
+        }
+        .express-login-content{
+            left: -20px;
+            padding: 5px;
+        }
+        .dropdown-content{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="row">
+        <div class="col left">
+            <a href="#" id="menu">Menu</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+        </div>
+        <div class="col right">
+            <a href="#" id="login">Login</a>
+            <div class="item express-login">
+                <a href="#" id="express-login">Express Login</a>
+                <div class="express-login-content">
+                    <div><span>name:</span></div>
+                    <div><span>password:</span></div>
+                    <div><span>name:</span></div>
+                    <div><span>password:</span></div>
+                    <button>login</button>
+                </div>
+            </div>
+            <div class="item dropdown">
+                <a href="#" id="dropdown">Drop Down</a>
+                <div class="dropdown-content">
+                    <a href="#">Item</a>
+                    <a href="#">Item</a>
+                    <a href="#">Item</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="menu-content">
+        <a href="#" id="menu-close">Close</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+    </div>
+    <div class="mask" id="login-content">
+        <div class="login">
+            <div class="close"><button id="login-close">Close</button></div>
+            <div><span>name:</span></div>
+            <div><span>password:</span></div>
+            <div><span>name:</span></div>
+            <div><span>password:</span></div>
+        </div>
+    </div>
+
+    <script>
+
+        //drop down
+        var dropdown = document.querySelector('#dropdown');
+        var dropdown_content = document.querySelector('.dropdown-content');
+
+        dropdown.addEventListener('click', function () {
+            var dropdown_classes = dropdown_content.classList;
+            dropdown_classes.contains('show')?dropdown_classes.remove('show'):dropdown_classes.add('show');
+        });
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.dropdown-content') && e.target !== dropdown)
+                dropdown_content.classList.remove('show');
+        });
+
+        //express-login
+        var express_login = document.querySelector('#express-login');
+        var express_login_content = document.querySelector('.express-login-content');
+        express_login.addEventListener('click', function (e) {
+            e.preventDefault();
+            var express_classes = express_login_content.classList;
+            express_classes.contains('show')?express_classes.remove('show'):express_classes.add('show');
+        });
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.express-login-content') && e.target !== express_login)
+                express_login_content.classList.remove('show');
+        });
+
+
+        //menu-content
+        var menu = document.querySelector('#menu');
+        var menu_close = document.querySelector('#menu-close');
+        var menu_content = document.querySelector('.menu-content');
+
+        menu.addEventListener('click', function (e) {
+            e.preventDefault();
+            var content_classes = menu_content.classList;
+            content_classes.contains('show')?content_classes.remove('show'):content_classes.add('show');
+        });
+        menu_close.addEventListener('click', function (e) {
+            e.preventDefault();
+            menu_content.classList.remove('show');
+        });
+
+
+        //login-modal
+        var login = document.querySelector('#login');
+        var login_close = document.querySelector('#login-close');
+        var login_content = document.querySelector('#login-content');
+
+        login.addEventListener('click', function (e) {
+            e.preventDefault();
+            login_content.classList.add('show');
+        });
+        login_content.addEventListener('click', function (e) {
+            var el = e.target;
+            if (!el.closest('.login') || el == login_close)
+                login_content.classList.remove('show');
+        });
+        login.addEventListener('keydown',function (e) {
+            if (e.code == 'Escape')
+                login_content.classList.remove('show');
+        });
+
+    </script>
+</body>
+</html>

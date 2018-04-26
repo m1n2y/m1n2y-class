@@ -1,0 +1,18 @@
+.nav .left, .nav .right{
+    width: 50%;
+}
+.right{
+    text-align: right;
+}
+.nav{
+    background-color: #333;
+}
+.nav a{
+    display: inline-block;
+    padding: 10px 20px 10px 0;
+    color: gray;
+    font-size: 80%;
+}
+.nav a:hover{
+    color: antiquewhite;
+}

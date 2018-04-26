@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <script>
+
+        var xtr = new XMLHttpRequest();
+        xtr.open('get', 'https://api.github.com/users/m1n2y');
+        xtr.send();
+
+        xtr.addEventListener('load', function () {
+            var back = JSON.parse(this.responseText);
+            console.log(back);
+        });
+
+
+    </script>
+</body>
+</html>

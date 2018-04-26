@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #eee;
+            font-family: sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: lighter;
+        }
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #777;
+        }
+
+        form {
+            font-size: 0;
+        }
+
+        button, input {
+            font-size: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            outline: 0;
+            color: #555;
+        }
+
+        form input {
+            width: 80%;
+            border-right: 0;
+        }
+
+        form button {
+            width: 20%;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow: auto;
+        }
+
+        .container > * {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #total {
+            font-size: 80%;
+            color: #aaa;
+        }
+
+        .user {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, .1);
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user > * {
+            display: inline-block;
+            vertical-align: top;
+            padding: 5px;
+            color: #555;
+            font-size: 80%;
+        }
+
+        .user .info > * {
+            margin-bottom: 2px;
+        }
+
+        .username {
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .avatar {
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            padding: 0;
+        }
+
+        .more {
+            background-color: #ff6700;
+            padding: 10px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>GayHub用户搜索</h1>
+    <form id="search_form">
+        <input name="search" type="search" autofocus autocomplete="off" placeholder="请输入用户名">
+        <button type="submit">搜索</button>
+    </form>
+    <div id="total"></div>
+    <div id="user_list"></div>
+    <div class="more" id="more">load more</div>
+</div>
+
+<script>
+    var el_user_list = document.getElementById('user_list');
+    var el_total = document.getElementById('total');
+    var el_more = document.getElementById('more');
+    var current_page = 1;
+    var keyword;
+
+    init();
+
+    function init() {
+
+        var form = document.getElementById('search_form');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            keyword = search_form.search.value;
+            search(keyword, current_page);
+        });
+
+    }
+
+    function search(keyword, page) {
+        var http = new XMLHttpRequest();
+        http.open('get', 'https://api.github.com/search/users?q='+ keyword +'&page='+ page);
+        http.send();
+        http.addEventListener('load', function () {
+            var data = JSON.parse(http.responseText);
+            el_total.innerText = 'total: ' + data.total_count;
+            //这里render只能写在这里 因为load事件是异步发生 init里面取不到data  因为还没有执行
+            render(data.items);
+        });
+    }
+
+    function render(users) {
+        var html = '';
+        el_more.style.display = 'none';
+        users.forEach(function (user) {
+            html += '<div><img src="' + user.avatar_url + '">' + user.login + '</div>';
+        });
+        el_user_list.innerHTML += html;
+        detect_more(users);
+    }
+
+    function detect_more(users) {
+        if (users.length == 30) {
+            el_more.style.display = 'block';
+            el_more.addEventListener('click', function () {
+                current_page++;
+                search(keyword, current_page);
+            });
+        }
+    }
+</script>
+</body>
+</html>

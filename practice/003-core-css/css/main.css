@@ -1,0 +1,41 @@
+.row{
+    margin: 0 0 5px;
+}
+
+.top_bar{
+    background: #333;
+    color: #b0b0b0;
+}
+.top_bar li, .header_nav li{
+    display: inline-block;
+}
+.top_bar span{
+    color: #424242;
+    padding: 0 5px;
+}
+.top_bar_right{
+    text-align: right;
+}
+
+/*.first_page .row div{*/
+    /*border: 1px solid darkred;*/
+/*}*/
+.logo{
+    background-color: darkred;
+}
+
+.row .col:nth-child(odd){
+    background-color: darkgoldenrod;
+}
+.row .col:nth-child(even){
+    background-color: antiquewhite;
+}
+.ads div{
+    width: 25%;
+}
+.flash .col{
+    width: 20%;
+}
+.display_phone .col{
+    width: 25%;
+}

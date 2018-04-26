@@ -1,0 +1,21 @@
+.head-section {
+    height: 640px;
+    background: url("https://s1.ljcdn.com/feroot/pc/asset/img/home/bannerV2.jpg") no-repeat center;
+}
+.head-section .head{
+    padding: 20px 0;
+}
+
+.head .left{
+    width: 30%;
+}
+
+.head .right{
+    width: 70%;
+}
+
+.head .right a{
+    display: inline-block;
+    padding: 5px;
+    color: whitesmoke;
+}

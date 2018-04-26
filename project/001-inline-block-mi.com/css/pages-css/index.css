@@ -1,0 +1,27 @@
+.main-promo{
+    background: black url("http://i1.mifile.cn/a4/xmad_15221426844518_moLSI.jpg") no-repeat;
+    background-size: contain;
+}
+
+.nav-left{
+    background-color: rgba(0,0,0,0.6);
+    padding: 20px 0;
+}
+
+.nav-left a{
+    display: block;
+    padding: 14px 30px;
+    color: #fff;
+}
+
+.nav-left a:hover{
+    background-color: #ff6700;
+}
+
+.ads{
+    margin: 15px 0;
+}
+
+.ads .col{
+    width: 27.6666666666%;
+}

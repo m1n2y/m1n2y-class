@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.row{
+    font-size: 0;
+}
+.col{
+    display: inline-block;
+    font-size: 16px;
+}
+.half_width{
+    width: 50%;
+}
+.sm_width{
+    width: 20%;
+}

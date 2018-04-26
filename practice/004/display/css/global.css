@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif, "Microsoft Sans Serif";
+    font-size: 16px;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.row {
+    display: block;
+    font-size: 0;
+}
+
+.col {
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+.container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.wid20 {
+    width: 20%;
+}
+
+.wid25{
+    width: 25%;
+}
+
+.wid50{
+    width: 50%;
+}
+
+.wid80{
+    width: 80%;
+}
+
+.right{
+    text-align: right;
+}
+

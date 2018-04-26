@@ -1,0 +1,14 @@
+.global-nav{
+    background-color: #333;
+    color: #b0b0b0;
+}
+
+.global-nav a{
+    color: inherit;
+    font-size: 80%;
+    padding: 10px 5px;
+}
+
+.global-nav a:hover{
+    color: whitesmoke;
+}

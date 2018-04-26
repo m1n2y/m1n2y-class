@@ -1,0 +1,220 @@
+/*firstScreen style section*/
+.firstScreen{
+    height: 600px;
+}
+
+.firstScreen .background {
+    position: fixed;
+    z-index: -1;
+    height: 600px;
+}
+
+.firstScreen a {
+    color: white;
+}
+
+.firstScreen .header {
+    padding: 20px 0;
+}
+
+.firstScreen .location{
+    vertical-align: center;
+}
+
+.firstScreen .location .logo{
+    width: 130px;
+    height: 50px;
+    background: url("../img/new.png") 0 -378px;
+    position: relative;
+    top: 20px;
+}
+.firstScreen .location a:last-child{
+    padding: 5px 10px 6px 2px;
+    background-color: rgba(0,0,0,.15);
+}
+.firstScreen .location a:last-child:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("../img/new.png") -180px -12px;
+    margin-right: 4px;
+}
+
+.firstScreen .login a,
+.firstScreen .location a {
+    font-size: 80%;
+    color: #b0b0b0;
+}
+
+.firstScreen .header-nav {
+    margin-top: 10px;
+}
+
+.firstScreen .header-nav a {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.firstScreen .header-nav a:last-child {
+    padding-right: 0;
+}
+
+.firstScreen .header-nav a:last-child:before{
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: url("../img/new.png") -222px -20px;
+    margin-right: 8px;
+}
+
+.firstScreen .header-nav a:nth-child(3):before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("https://s1.ljcdn.com/feroot/pc/asset/img/home/lvju.png?_v=20180319195424");
+    background-size: 100%;
+    margin-right: 5px;
+}
+
+.firstScreen .login a:first-child:before{
+    content: '';
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background: url("../img/new.png") -203px -20px;
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
+}
+
+
+/*content style section*/
+.firstScreen .content{
+    margin: 10% 0;
+    color: white;
+}
+
+.firstScreen .content h2,
+.firstScreen .content h3{
+    text-align: center;
+}
+
+.firstScreen .content h2{
+    font-weight: bold;
+    font-size: 350%;
+}
+
+.firstScreen .content h3{
+    font-weight: lighter;
+    font-size: 140%;
+}
+
+.firstScreen .search-part{
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.firstScreen .content-nav a{
+    display: inline-block;
+    padding: 10px;
+    color: #b0b0b0;
+}
+
+.firstScreen .content-nav a:hover{
+    color: whitesmoke;
+}
+
+.firstScreen .content-nav a.selected{
+    color: white;
+}
+
+.firstScreen .content-nav a:first-child{
+    padding-left: 0;
+}
+
+
+.firstScreen .search button,
+.firstScreen .search input{
+    height: 50px;
+}
+
+.firstScreen .search input{
+    width: 80%;
+}
+
+.firstScreen .search button{
+    width: 20%;
+    background-color: #00ae66;
+    color: white;
+}
+
+.firstScreen .info img{
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+
+}
+
+.firstScreen .info span{
+    margin-right: 10px;
+    color: #b0b0b0;
+    font-size: 75%;
+}
+
+
+/*recommandation style part*/
+.recommendation{
+    padding: 20px 0 40px;
+    background-color: white;
+}
+
+.recommendation .head{
+    margin: 20px 0 40px;
+}
+
+.recommendation .head .title{
+    font-size: 200%;
+}
+
+.recommendation .head .left{
+    color: #424242;
+}
+
+.content{
+    border: rgba(0,0,0,.1) 1px solid;
+}
+.cards-group .card{
+    margin-right: 2%;
+    width: 23.5%;
+}
+.cards-group .card:last-child{
+    margin-right: 0;
+}
+
+.card .thumbnail{
+    position: relative;
+}
+
+.card .thumbnail span{
+    position: absolute;
+    background-color: #424242;
+    color: white;
+    top: 160px;
+}
+
+.content span{
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+
+.card .less{
+    color: #b0b0b0;
+    font-size: 80%;
+}
+.card .trend{
+    margin-top: 8px;
+}

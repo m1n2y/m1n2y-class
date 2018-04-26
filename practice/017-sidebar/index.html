@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+        .nav{
+            background-color: #00ae66;
+        }
+        .menu, menu-content div{
+            padding: 20px;
+        }
+        .menu-content{
+            background-color: #fae2b4;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 200px;
+            left: -100%;
+            transition: left 0.5s;
+        }
+        .menu-content.show{
+            left: 0;
+        }
+        .menu-content div{
+            padding: 20px;
+        }
+        .menu-content div:hover{
+            background-color: rgba(0,0,0,.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="menu">menu</div>
+    </div>
+    <div class="menu-content">
+        <div id="menu-close">close</div>
+        <div>item</div>
+        <div>item</div>
+        <div>item</div>
+        <div>item</div>
+    </div>
+
+    <script>
+        
+        var menu = document.querySelector('.menu');
+        var menu_content = document.querySelector('.menu-content');
+        var menu_close = document.querySelector('#menu-close');
+
+        menu.addEventListener('click', function () {
+            menu_content.classList.contains('show') ? menu_content.classList.remove('show') : menu_content.classList.add('show');
+        });
+        menu_close.addEventListener('click', function () {
+            menu_content.classList.remove('show');
+        });
+        
+    </script>
+</body>
+</html>

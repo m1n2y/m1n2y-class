@@ -1,0 +1,66 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.head {
+    background: url("https://global.niucache.com/static/i18n/widget/en/index/img/k-8_f42fefe7.jpg") no-repeat;
+    min-height: 650px;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav {
+    background-color: white;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.nav a{
+    padding: 15px;
+    color: #424242;
+}
+
+.body{
+    margin-top: 20px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.card{
+    padding: 10px;
+}
+
+.card > *{
+    margin-bottom: 5px;
+}
+
+.card .thumbnail{
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card .text{
+    padding: 10px;
+}
+
+.card .title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.foot{
+    background-color: f5f5f5;
+    padding: 40px 150px;
+    color: #b0b0b0;
+}
+
+.foot .title{
+    color: black;
+}
+.foot div{
+    padding: 10px 0;
+}

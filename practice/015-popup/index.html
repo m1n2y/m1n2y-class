@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, button{
+            font-size: 40px;
+        }
+
+        .mask, .modal{
+            display: none;
+        }
+
+        .mask{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,.5);
+        }
+
+        .modal{
+            position: fixed;
+            top: 200px;
+            left: 200px;
+            right: 200px;
+            bottom: 200px;
+            background-color: white;
+        }
+
+        .mask.show,
+        .modal.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div><button class="login">login</button></div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque earum ex illo impedit quidem. Accusantium ad aliquam blanditiis consectetur consequatur, doloremque error expedita ipsum, numquam perspiciatis reiciendis rerum sed totam.</div>
+    <div class="mask"></div>
+    <div class="modal">
+        <div><button class="close">close</button></div>
+        <div>aaaaaaaaa</div>
+    </div>
+
+    <script>
+
+        var btn_login = document.querySelector('.login');
+        var mask = document.querySelector('.mask');
+        var modal = document.querySelector('.modal');
+        var btn_close = document.querySelector('.close');
+
+        function show() {
+            mask.classList.add('show');
+            modal.classList.add('show');
+        }
+
+        function hide() {
+            mask.classList.remove('show');
+            modal.classList.remove('show');
+        }
+
+        btn_login.addEventListener('click',show);
+        btn_close.addEventListener('click',hide);
+        mask.addEventListener('click',hide);
+
+    </script>
+</body>
+</html>

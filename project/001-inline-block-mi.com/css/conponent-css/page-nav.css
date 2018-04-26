@@ -1,0 +1,49 @@
+.page-nav{
+    margin: 20px 0;
+}
+
+.page-nav .logo img{
+    background-color: #ff6700;
+    width: 49px;
+    height: 49px;
+}
+
+.page-nav .group-link{
+    vertical-align: center;
+}
+
+.page-nav .group-link a {
+    color: #333;
+    padding: 10px;
+}
+
+.page-nav .group-link a:hover{
+    color: #ff6700;
+}
+
+.page-nav .search{
+    font-size: 0;
+    position: relative;
+}
+
+.page-nav .search input,
+.page-nav .search button{
+    padding: 10px;
+    height: 44px;
+}
+
+.page-nav .search .tags{
+    position: absolute;
+    top: 12px;
+    right: 120px;
+}
+
+.page-nav .search .tags span{
+    background-color: #eee;
+    color: #757575;
+    font-size: 80%;
+}
+
+.page-nav .search .tags span:hover{
+    background-color: #ff6700;
+}

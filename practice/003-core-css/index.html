@@ -1,0 +1,33 @@
+<style>
+    body{
+        margin: 0;
+    }
+    .row{
+        font-size: 0; /* clear space between two div */
+    }
+    .col{
+        display: inline-block;
+        font-size: 15px;
+    }
+    .sm{
+        width: 20%;
+    }
+    .md{
+        width: 30%;
+    }
+    .lg{
+        width: 50%;
+    }
+    .wrapper{
+        margin: 0 auto;
+        max-width: 1000px;
+    }
+</style>
+<!--当显示行内块元素时，会把回车断行解析成一个空格占位-->
+<div class="wrapper">
+    <div class="row">
+        <div style="background: aquamarine" class="col sm">a</div>
+        <div style="background: black" class="col md">a</div>
+        <div style="background: red" class="col lg">a</div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+.main-promotion .cat{
+    width: 20%;
+    background-color: #424242;
+}
+.main-promotion .sliders{
+    width: 80%;
+}
+.main-promotion .cat a{
+    display: block;
+    color: whitesmoke;
+    padding: 10px 25px;
+    font-size: 90%;
+}
+.main-promotion .cat a:hover{
+    background-color: rgba(0,0,0,.8);
+}
+
+.promotion{
+    background-color: #fae2b4;
+}
+.promotion .container{
+    background-image: url("http://i1.mifile.cn/a4/xmad_15206016147333_zJPru.jpg");
+    background-position: center;
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+.promotion .cat1{
+    width: 20%;
+    background-color: rgba(0,0,0,.6);
+}
+.promotion .cat1 a{
+    display: block;
+    color: whitesmoke;
+    padding: 10px 25px;
+}
+.promotion .cat1 a:hover{
+    background-color: rgba(0,0,0,.8);
+}

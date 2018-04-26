@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form id="form1">
+        <input type="search" placeholder="search github user" id="username">
+        <button type="submit">submit</button>
+    </form>
+
+    <script>
+
+        var form1 = document.getElementById('form');
+        var input1 = document.getElementById('username');
+        var usernmae = input1.value;
+        console.log(username);
+
+        init();
+
+        function init() {
+            form1.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log(2);
+
+            });
+        }
+
+
+        function send(url, fn, method) {
+            var method = method || 'get';
+            var http = new XMLHttpRequest();
+            http.open(method, url);
+            http.send();
+
+            http.addEventListener('load', function () {
+                var data = JSON.parse(this.responseText);
+                fn(data);
+            });
+        }
+
+    </script>
+
+</body>
+</html>

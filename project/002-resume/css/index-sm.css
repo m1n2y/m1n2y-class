@@ -1,0 +1,14 @@
+@media (max-width: 450px) {
+    .main-content{
+        padding: 10px;
+    }
+
+    .main-content .col{
+        display: block;
+        width: 100%;
+    }
+
+    .project .item{
+        width: 50%;
+    }
+}

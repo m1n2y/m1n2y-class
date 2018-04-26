@@ -1,0 +1,112 @@
+.nav{
+    width: 100%;
+    color: whitesmoke;
+    background-color: #424242;
+    position: fixed;
+    z-index: 1;
+}
+
+.nav h2{
+    margin: 10px 0;
+}
+
+.nav a{
+    color: #908383;
+    font-size: 0.8rem;
+    padding: 16px;
+}
+
+.nav a.active,
+.nav a:hover{
+    color: white;
+}
+
+.nav .left,
+.nav .right{
+    padding: 0 5%;
+}
+
+.nav .left{
+    width: 20%;
+}
+
+.nav .right{
+    width: 80%;
+}
+
+.bg, .footer{
+    background: #424242 url("../img/p-dark.png");
+}
+
+.bg{
+    padding-top: 40px;
+}
+
+.footer{
+    padding: 80px 0
+}
+
+.b-intro{
+    padding: 50px 0;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.avater{
+    height: 200px;
+    width: 200px;
+    margin: 0 auto 20px;
+    border-radius: 100px;
+    background: whitesmoke url("../img/avater.jpg") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.main-content{
+    padding: 60px 100px;
+    color: #424242;
+    line-height: 2rem;
+    font-weight: bolder;
+}
+
+.main-content .left{
+    width: 40%;
+    padding: 20px;
+}
+
+.main-content .left p{
+    color: #b0b0b0;
+}
+
+.main-content .background{
+    width: 55%;
+    margin-left: 5%;
+}
+
+.main-content .background .card{
+    border-left: 2px solid #424242;
+    padding: 20px;
+    position: relative;
+}
+
+.main-content .background .card i{
+    position: absolute;
+    left: -15px;
+    top: 20px;
+    padding: 8px;
+    background-color: white;
+}
+
+.project{
+    background-color: #ddd;
+    text-align: center;
+}
+
+.project h2{
+    padding: 60px 0 20px 0;
+}
+
+.project .item{
+    width: 33.3333333%;
+    padding: 20px;
+}

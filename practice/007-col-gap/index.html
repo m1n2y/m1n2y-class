@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .row{
+            display: block;
+            font-size: 0px;
+        }
+
+        .col {
+            display: inline-block;
+            font-size: 1rem;
+            vertical-align: top;
+            width: 33.3333333%;
+            border: 1px solid #00ae66;
+        }
+
+        .card, .test {
+            height: 30px;
+            background-color: #ff6700;
+        }
+
+        .test{
+            margin-bottom: 10px;
+        }
+
+        .row.fat {
+            margin: 0 -10px;
+        }
+
+
+        .card {
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="test"></div>
+
+    <div class="row fat">
+        <div class="col">
+            <div class="card">a</div>
+        </div>
+        <div class="col">
+            <div class="card">b</div>
+        </div>
+        <div class="col">
+            <div class="card">c</div>
+        </div>
+    </div>
+</body>
+</html>

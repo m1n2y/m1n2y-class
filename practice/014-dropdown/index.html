@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            display: inline-block;
+            text-decoration: none;
+        }
+        .row{
+            font-size: 0;
+        }
+        .col{
+            font-size: 1rem;
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+        .left{
+            text-align: left;
+        }
+        .right{
+            text-align: right;
+        }
+        .container{
+            width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .nav{
+            background-color: black;
+        }
+        .nav a{
+            padding: 10px;
+            color: white;
+        }
+        .nav a:hover{
+            background-color: #fae2b4;
+        }
+        .menu-content{
+            display: none;
+            font-size: 1rem;
+            background-color: black;
+            position: absolute;
+            right: 0;
+            text-align: center;
+        }
+        .menu-content a{
+            display: block;
+            padding: 10px 40px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="row nav">
+        <div class="container">
+            <div class="col left">
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+            </div>
+            <div class="col right">
+                <a href="#">Item</a>
+                <a href="#" id="menu">Menu</a>
+            </div>
+            <div class="menu-content" id="menu-content">
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+                <a href="#">Item</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        ;(function () {
+            var menu = document.querySelector('#menu');
+            var menu_content = document.querySelector('#menu-content');
+
+            menu.addEventListener('mouseenter', function () {
+                menu_content.style.display = 'block';
+            });
+            menu_content.addEventListener('mouseleave', function () {
+                menu_content.style.display = 'none';
+            });
+
+        })();
+
+    </script>
+
+</body>
+</html>

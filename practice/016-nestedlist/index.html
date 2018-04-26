@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>item
+            <ul>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>item
+            <ul>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>item
+            <ul>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+                <li>item
+                    <ul>
+                        <li>item</li>
+                        <li>item</li>
+                        <li>item</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        var li_list = document.querySelectorAll('li');
+        
+        for (var i=0; i<li_list.length; i++){
+            var el_li = li_list[i];
+
+            //target是点击的对象 currentTarget是当前处理的对象=this，冒泡时可以是当前的父级对象
+            el_li.addEventListener('click', function (e) {
+                var el_ul = this.querySelector('ul');
+                // this != e.target 那么当前作用的元素不是点击的元素，例子中是点击元素的父级元素 因为事件冒泡
+                if ((this != e.target) || !el_ul)
+                    return;
+                el_ul.classList.contains('hide')?show(el_ul):hide(el_ul);
+            });
+        }
+
+        function hide(e) {
+            e.classList.add('hide');
+        }
+
+        function show(e) {
+            e.classList.remove('hide');
+        }
+    </script>
+</body>
+</html>

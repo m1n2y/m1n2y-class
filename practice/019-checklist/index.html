@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            font-size: 25px;
+        }
+
+        .checklist label {
+            display: block;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<button id="select_all">select all</button>
+<button id="cancel_all">cancel all</button>
+<button id="reverse">reverse</button>
+<div class="checklist">
+    <label><input type="checkbox">Item</label>
+    <label><input type="checkbox">Item</label>
+    <label><input type="checkbox">Item</label>
+    <label><input type="checkbox">Item</label>
+    <label><input type="checkbox">Item</label>
+</div>
+
+<script>
+    var el = document.createElement('a');
+    el.classList.add('tip');
+    el.innerText = 'hehehe';
+    console.log(el);
+    document.body.appendChild(el);
+</script>
+
+<script>
+
+    var lists = document.querySelectorAll('[type=checkbox]');
+    var start, start_index, end_index;
+
+    lists.forEach(function (item, index) {
+        item.addEventListener('click', function (e) {
+            if (e.shiftKey) {
+                end_index = index;
+                select_between();
+            } else {
+                start = this;
+                start_index = index;
+            }
+        })
+    });
+
+    function select_between() {
+        if (start_index < end_index){
+            lists.forEach(function (item, index) {
+                if ((start_index < index) && (index < end_index))
+                    this.checked = true;
+            });
+        }else{
+            lists.forEach(function (item, index) {
+                if (start_index > index && index < end_index)
+                    this.checked = true;
+            });
+        }
+    }
+
+</script>
+
+<script>
+
+    //        var select_all = document.querySelector('#select_all'),
+    //            cancel_all = document.querySelector('#cancel_all'),
+    //            reverse = document.querySelector('#reverse'),
+    //            lists = document.querySelectorAll('[type=checkbox]');
+    //
+    //        select_all.addEventListener('click', function () {
+    //            lists.forEach(function (item) {
+    //                item.checked = true;
+    //            })
+    //        });
+    //        cancel_all.addEventListener('click', function () {
+    //            lists.forEach(function (item) {
+    //                item.checked = false;
+    //            })
+    //        });
+    //        reverse.addEventListener('click', function () {
+    //            for (var item of lists){
+    //                item.checked = !item.checked;
+    //            }
+    //        });
+
+    // //点击当前元素 取消所有选中的 除了自己 模拟单选
+    // function unchecked_all_except(except){
+    //     lists.forEach(function (item) {
+    //         if(item === except)
+    //             return;
+    //         item.checked = false;
+    //     });
+    // }
+    //
+    // for (var item of lists){
+    //     item.addEventListener('click', function (e) {
+    //         //如果按下Ctrl键 可以多选
+    //         if(e.ctrlKey || e.metaKey)
+    //             return;
+    //         unchecked_all_except(this);
+    //     })
+    // }
+    //
+    // //按住shift 选中两个中所有元素
+    // lists.forEach(function (item, index) {
+    //     item.addEventListener('click', function (e) {
+    //         if(e.shiftKey)
+    //
+    //     });
+    // })
+
+
+</script>
+</body>
+</html>
