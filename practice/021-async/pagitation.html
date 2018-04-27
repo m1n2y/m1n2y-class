@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 20px;
+        }
+
+        button.active {
+            background-color: mediumvioletred;
+        }
+    </style>
+</head>
+<body>
+<div id="pagitation">
+
+</div>
+
+<script>
+
+    var pageAmount = 20,
+        maxBtn = 5,
+        currentPage = 1
+    ;
+
+    var el_pagitation = document.getElementById('pagitation');
+
+
+
+    init();
+
+    function init() {
+        renderPages();
+    }
+
+    function renderPages() {
+        //compute pagitation range
+        var range = computeRange(currentPage, maxBtn, pageAmount);
+        // clear pagitation
+        el_pagitation.innerHTML = '';
+        //create buttons
+        for (var i = range[0]; i <= range[1]; i++) {
+            var page = document.createElement('button');
+            if (i == currentPage)
+                page.classList.add('active');
+            page.innerHTML = i;
+            page.addEventListener('click', callPageClick(i));
+            el_pagitation.appendChild(page);
+        }
+    }
+
+    function callPageClick(i) {
+        return function () {
+            currentPage = i;
+            renderPages();
+        }
+    }
+
+    function computeRange(currentPage, maxBtn, pageAmount) {
+
+        var move = parseInt(maxBtn / 2),
+            start = ((currentPage - move) > 0) ? (currentPage - move) : 1,
+            end = ((currentPage + move) < pageAmount) ? (currentPage + move) : pageAmount;
+
+        if (end < 5)
+            end = 5
+
+        var isReachingEnd= currentPage > (pageAmount - move);
+        if (isReachingEnd) {
+            start = pageAmount - maxBtn + 1;
+            end = pageAmount;
+        }
+
+        return [start,end];
+
+    }
+
+</script>
+</body>
+</html>
