@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
     <style>
         body {
             background: #eee;
@@ -49,6 +47,34 @@
 
         form button {
             width: 20%;
+        }
+
+        #history_list {
+            font-size: 0;
+            background-color: white;
+            border: 1px solid rgba(0,0,0,.2);
+            border-top: 0;
+        }
+
+        .history {
+            padding: 8px 10px;
+        }
+
+        .history span:first-child {
+            font-size: 0.8rem;
+            display: inline-block;
+            width: 70%;
+        }
+
+        .history span:last-child {
+            font-size: 0.8rem;
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+        }
+
+        .history:hover {
+            background-color: rgba(0,0,0,.2);
         }
 
         .container {
@@ -110,6 +136,8 @@
             color: white;
         }
     </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <div class="container">
@@ -117,6 +145,9 @@
     <form id="search_form">
         <input name="search" type="search" autofocus autocomplete="off" placeholder="请输入用户名">
         <button type="submit">搜索</button>
+        <div id="history_list">
+
+        </div>
     </form>
     <div id="total"></div>
     <div id="user_list"></div>
@@ -129,11 +160,14 @@
         el_total = document.getElementById('total'),
         el_top = document.getElementById('top'),
         el_patigation = document.getElementById('patigation'),
+        el_history_list = document.getElementById('history_list'),
         current_page = 1,
         per_page = 5,
         max_btn = 5,
         total = 0,
-        keyword;
+        keyword,
+        history_list
+    ;
 
     init();
 
@@ -150,12 +184,40 @@
 
         detect_top();
 
+        store_set('history_list',['a', 'b', 'c']);
+        render_history_list();
+        localStorage.removeItem('history_list');
+
+    }
+    
+    function render_history_list() {
+        history_list = store_get('history_list') || [];
+        history_list.forEach(function (item) {
+            var history = document.createElement('div');
+            history.classList.add('history');
+            history.dataset.history = item;
+            history.innerHTML = '<span>'+ item +'</span><span>delete</span>';
+            el_history_list.appendChild(history);
+        });
+        add_history_list_listener();
+    }
+
+    function add_history_list_listener() {
+        el_history_list.addEventListener('click', function (e) {
+            var el = e.target.closest('.history');
+            console.log(el);
+            //set keyword and search
+            search_form.search.value = el.dataset.history;
+            keyword = el.dataset.history;
+            search(keyword);
+        });
     }
 
     function render_patigation() {
         var range = compute_range();
         el_patigation.innerHTML = '';
-        for (var i=range[0]; i<=range[1]; i++) {
+        render_first_btn();
+        for (var i = range[0]; i <= range[1]; i++) {
             var page = document.createElement('button');
             page.innerHTML = i;
             if (current_page == i)
@@ -163,6 +225,7 @@
             page.addEventListener('click', callback_page_click(i));
             el_patigation.appendChild(page);
         }
+        render_last_btn();
     }
 
     function callback_page_click(i) {
@@ -172,10 +235,30 @@
         }
     }
 
+    function render_first_btn() {
+        var button = document.createElement('button');
+        button.innerHTML = 'first';
+        button.addEventListener('click', function () {
+            current_page = 1;
+            search(current_page);
+        });
+        el_patigation.appendChild(button);
+    }
+
+    function render_last_btn() {
+        var button = document.createElement('button');
+        button.innerHTML = 'last';
+        button.addEventListener('click', function () {
+            current_page = Math.ceil(total / per_page);
+            search(current_page);
+        });
+        el_patigation.appendChild(button);
+    }
+
     function compute_range() {
         var move = parseInt(max_btn / 2),
-            start = ((current_page - move)>0)?(current_page - move):1,
-            end = ((current_page + move)<total)?(current_page + move):total;
+            start = ((current_page - move) > 0) ? (current_page - move) : 1,
+            end = ((current_page + move) < total) ? (current_page + move) : total;
         var total_pages = Math.ceil(total / per_page);
 
         if (end < max_btn)
@@ -227,6 +310,16 @@
             var data = JSON.parse(http.responseText);
             fn(data);
         });
+    }
+
+    function store_set(key, val) {
+        var data = JSON.stringify(val);
+        localStorage.setItem(key, data);
+    }
+
+    function store_get(key) {
+        var data = localStorage.getItem(key);
+        return JSON.parse(data);
     }
 </script>
 </body>

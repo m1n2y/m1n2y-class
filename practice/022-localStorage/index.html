@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var data = ['a', 'b', 'c'];
+    var json = JSON.stringify(data);
+    localStorage.setItem('historyList', json);
+
+    var str = localStorage.getItem('historyList');
+    var h = JSON.parse(str);
+    console.log(h);
+    localStorage.removeItem('historyList');
+</script>
+
+</body>
+</html>
