@@ -9,16 +9,30 @@ function add_event() {
     activeLoadMore();
 }
 
+function updateOption() {
+    var option = {
+        keyword: share.getKeyword(),
+        currentPage: share.getCurrentPage(),
+        amount: share.getAmount(),
+        totalPage: share.getTotalPage(),
+        searchOption: share.getSearchOption()
+    };
+    return option;
+}
+
 function search_submit() {
     ele.form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var keyword = share.setKeyword(ele.input.value);
-        var currentPage = share.setCurrentPage(1);
-        search.user(keyword, function (data) {
-            var amount = data.total_count
-            ele.amount.innerText = 'Total: '+ amount;
+        share.setKeyword(ele.input.value);
+        var option = updateOption();
+        search.user(option.keyword, function (data) {
+            share.setAmount(data.total_count);
+            var option = updateOption();
+            ele.amount.innerText = 'Total: '+ option.amount;
             render.user(data.items);
-            if (!isLastPage(amount)) {
+            console.log(option.totalPage, option.currentPage);
+
+            if (!isLastPage()) {
                 ele.loadmore.hidden = false;
             }
         });
@@ -26,24 +40,24 @@ function search_submit() {
 }
 
 function activeLoadMore() {
-    var currentPage = share.setCurrentPage(++currentPage);
-    var keyword = share.getCurrentPage();
     ele.loadmore.addEventListener('click', function () {
-        search.user(keyword, function (data) {
+        var option = updateOption();
+        share.setCurrentPage(++option.currentPage);
+        option = updateOption();
+        search.user(option.keyword, function (data) {
             render.user(data.items);
-            if (isLastPage(data.total_count)) {
+            if (isLastPage()) {
                 ele.loadmore.hidden = true;
                 ele.placeholer.hidden = false;
             }
-        }, {page: currentPage});
+        }, {page: option.currentPage});
     });
 
 }
 
-function isLastPage(total) {
-    var currentPage = share.getCurrentPage();
-    var totalPages = share.setTotalPage(Math.ceil(total / 5));
-    if (totalPages > currentPage) {
+function isLastPage() {
+    var option = updateOption();
+    if (option.totalPage > option.currentPage) {
         return false;
     }
     return true;
