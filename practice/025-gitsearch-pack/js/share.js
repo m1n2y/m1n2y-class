@@ -48,7 +48,19 @@ function getSearchOption() {
     return searchOption;
 }
 
+function updateOption() {
+    var option = {
+        keyword: getKeyword(),
+        currentPage: getCurrentPage(),
+        amount: getAmount(),
+        totalPage: getTotalPage(),
+        searchOption: getSearchOption()
+    };
+    return option;
+}
+
 module.exports = {
+    updateOption: updateOption,
     setKeyword: setKeyword,
     getKeyword: getKeyword,
     setCurrentPage: setCurrentPage,

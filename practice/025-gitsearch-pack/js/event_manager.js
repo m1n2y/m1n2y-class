@@ -9,41 +9,29 @@ function add_event() {
     activeLoadMore();
 }
 
-function updateOption() {
-    var option = {
-        keyword: share.getKeyword(),
-        currentPage: share.getCurrentPage(),
-        amount: share.getAmount(),
-        totalPage: share.getTotalPage(),
-        searchOption: share.getSearchOption()
-    };
-    return option;
-}
-
 function search_submit() {
     ele.form.addEventListener('submit', function (e) {
         e.preventDefault();
         share.setKeyword(ele.input.value);
-        var option = updateOption();
+        var option = share.updateOption();
         search.user(option.keyword, function (data) {
             share.setAmount(data.total_count);
-            var option = updateOption();
+            var option = share.updateOption();
             ele.amount.innerText = 'Total: '+ option.amount;
             render.user(data.items);
-            console.log(option.totalPage, option.currentPage);
-
-            if (!isLastPage()) {
+            if (isLastPage())
+                ele.placeholer.hidden = false;
+            else
                 ele.loadmore.hidden = false;
-            }
         });
     });
 }
 
 function activeLoadMore() {
     ele.loadmore.addEventListener('click', function () {
-        var option = updateOption();
+        var option = share.updateOption();
         share.setCurrentPage(++option.currentPage);
-        option = updateOption();
+        option = share.updateOption();
         search.user(option.keyword, function (data) {
             render.user(data.items);
             if (isLastPage()) {
@@ -56,7 +44,7 @@ function activeLoadMore() {
 }
 
 function isLastPage() {
-    var option = updateOption();
+    var option = share.updateOption();
     if (option.totalPage > option.currentPage) {
         return false;
     }
