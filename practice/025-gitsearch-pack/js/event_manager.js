@@ -51,6 +51,10 @@ function isLastPage() {
     return true;
 }
 
+function loadHistory() {
+    var historyList = localStorage.getItem()
+}
+
 module.exports = {
     add_event: add_event
 };
