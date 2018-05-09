@@ -13,6 +13,7 @@ var searchOption = {
 
 function setKeyword(val) {
     keyword = val;
+    return updateOption();
 }
 
 function getKeyword() {
@@ -21,6 +22,7 @@ function getKeyword() {
 
 function setCurrentPage(val) {
     currentPage = val;
+    return updateOption();
 }
 
 function getCurrentPage() {
@@ -30,6 +32,7 @@ function getCurrentPage() {
 function setAmount(val) {
     amount = val;
     totalPage = Math.ceil(amount / searchOption.limit);
+    return updateOption();
 }
 
 function getAmount() {
@@ -42,6 +45,7 @@ function getTotalPage() {
 
 function setSearchOption(newOption) {
     searchOption = Object.assign(searchOption, newOption);
+    return updateOption();
 }
 
 function getSearchOption() {

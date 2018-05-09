@@ -1,15 +1,13 @@
 var history = require('./history');
 
-(function () {
+history.init({
+    el: 'history-list',
+    onclick: function (keyword) {
+        console.log(keyword);
+    },
+    onDelete: function (keyword) {
+        console.log(keyword);
+    }
+});
 
-    history.init({
-        "el": 'history-list',
-        "onclick": function () {
-            console.log("click");
-        },
-        "onDelete": function () {
-            console.log("delete");
-        }
-    });
-
-})();
+history.add('aa');

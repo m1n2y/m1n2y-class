@@ -6,4 +6,5 @@ module.exports = {
     userList: document.getElementById('user-list'),
     loadmore: document.getElementById('loadmore'),
     placeholer: document.getElementById('placeholer'),
+    historyList: document.getElementById('history-list'),
 };

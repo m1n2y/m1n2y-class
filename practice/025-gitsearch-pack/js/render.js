@@ -1,8 +1,7 @@
 var ele = require('./element.js');
 
-var html = '';
-
 function user(data) {
+    var html = '';
     data.forEach(function (user) {
         html += '<div class="user">' +
             '    <a class="avatar" target="_blank" href="'+user.html_url+'">' +
