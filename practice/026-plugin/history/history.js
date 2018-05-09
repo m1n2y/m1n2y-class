@@ -7,7 +7,7 @@ function init(config) {
     el = document.getElementById(config.el);
     on_click = config.onclick;
     on_delete = config.onDelete;
-    add(11);
+    add(22);
 }
 
 function add(val) {
@@ -20,7 +20,7 @@ function add(val) {
 
 function remove(val) {
     arr = storage.get('history');
-    helper.findAndDelete(arr, vale);
+    helper.findAndDelete(arr, val);
     if (arr.length !== 0)
         storage.set('history', arr);
     render(arr);
@@ -39,14 +39,17 @@ function render(arr) {
         var el_history = document.createElement('div');
         el_history.classList.add('history');
         el_history.innerHTML = '<div class="text">'+keyword+'</div>\n' +
-            '            <div class="tool"><span class="delete">delete</span></div>';
+            '            <div class="tool"><span>delete</span></div>';
         el.appendChild(el_history);
         el_history.addEventListener('click', function (e) {
-            on_click(keyword, e);
+            if (on_click)
+                on_click(keyword, e);
         });
-        el_history.getElementsByClassName('delete').[0].addEventListener('click', function (e) {
+        el_history.getElementsByTagName('span')[0].addEventListener('click', function (e) {
+            e.stopPropagation();
             remove(keyword);
-            on_delete(keyword, e);
+            if (on_delete)
+                on_delete(keyword, e);
         });
     });
 }
