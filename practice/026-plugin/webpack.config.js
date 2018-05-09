@@ -1,5 +1,5 @@
 module.exports = {
-    'entry': './history/index.js',
+    'entry': './index.js',
     'output': {
         filename: 'bundle.js'
     }
