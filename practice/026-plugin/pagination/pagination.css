@@ -1,0 +1,14 @@
+.headPagination,
+.pagesPagination,
+.tailPagination {
+    display: inline-block;
+}
+
+#pagination button {
+    display: inline-block;
+    padding: 10px;
+}
+
+#pagination button.active {
+    background-color: #fc6c7f;
+}

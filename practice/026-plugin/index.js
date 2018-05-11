@@ -1,23 +1,20 @@
-// var history = require('./history/history');
-//
-// history.init({
-//     el: 'history-list',
-//     onclick: function (keyword) {
-//         console.log(keyword);
-//     },
-//     onDelete: function (keyword) {
-//         console.log(keyword);
-//     }
-// });
+var history = require('./history/history');
+
+history.init({
+    el: 'history-list',
+    onclick: function (keyword) {
+        console.log(keyword);
+    },
+    onDelete: function (keyword) {
+        console.log(keyword);
+    }
+});
 
 var pagination = require('./pagination/pagination');
 
 pagination.init({
-    el: 'pagitation',
-    limit: 1, // per page
+    el: 'pagination',
+    totalAmount: 3,
+    limit: 2,
     numOfButton: 5,
-    firstPage: true,
-    lastPage: true,
-    previousPage: true,
-    nextPage: true
 });
