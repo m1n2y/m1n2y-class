@@ -155,7 +155,7 @@
             border-left-width: 1px;
         }
 
-        .pager.active {
+        #pagination-container button.active {
             background: rgba(0, 0, 0, .2);
             color: #000;
         }
@@ -215,6 +215,21 @@
         .history .tool > * {
             cursor: pointer;
         }
+
+        .headPagination,
+        .pagesPagination,
+        .tailPagination {
+            display: inline-block;
+        }
+
+        #pagination button {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        #pagination button.active {
+            background-color: #fc6c7f;
+        }
     </style>
 </head>
 <body>
@@ -232,17 +247,9 @@
     </form>
     <div id="amount"></div>
     <div id="user-list"></div>
-    <button id="loadmore" class="block" hidden>加载更多</button>
+    <!--<button id="loadmore" class="block" hidden>加载更多</button>-->
     <div class="tac" id="placeholer" hidden>谋了 - . -</div>
-    <div id="pagination-container" hidden>
-        <div>
-            <button id="pagination-start" class="pager">首页</button>
-        </div>
-        <div id="pagination"></div>
-        <div>
-            <button id="pagination-end" class="pager">末页</button>
-        </div>
-    </div>
+    <div id="pagination-container" hidden></div>
 </div>
 <div class="toolbar">
     <button id="top">Top</button>

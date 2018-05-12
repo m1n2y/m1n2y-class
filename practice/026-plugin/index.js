@@ -14,7 +14,11 @@ var pagination = require('./pagination/pagination');
 
 pagination.init({
     el: 'pagination',
-    totalAmount: 3,
+    totalAmount: 10,
     limit: 2,
     numOfButton: 5,
+    currentPage: 3,
+    onChange: function (current) {
+        console.log(current);
+    }
 });

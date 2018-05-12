@@ -3,11 +3,12 @@ var share = require('./share');
 var search = require('./search');
 var render = require('./render');
 var history = require('../plugin/history');
+var pagination = require('../plugin/pagination');
 
 //bind events to all related elements
 function add_event() {
     search_submit();
-    activeLoadMore();
+    //activeLoadMore();
     activeHistory();
 }
 
@@ -41,8 +42,30 @@ function search_submit() {
                 ele.placeholer.hidden = false;
             else
                 ele.loadmore.hidden = false;
+
+            //init pagination
+            if (option.amount > 0)
+                activePagination();
         });
         history.add(option.keyword);
+    });
+}
+
+function activePagination() {
+    ele.pagination.hidden = false;
+    var option = share.updateOption();
+    pagination.init({
+        el: 'pagination-container',
+        totalAmount: option.amount,
+        limit: option.searchOption.limit,
+        numOfButton: 5,
+        currentPage: 1,
+        onChange: function (current) {
+            option = share.setCurrentPage(current);
+            search.user(option.keyword, function (data) {
+                render.user(data.items);
+            }, {page: option.currentPage});
+        }
     });
 }
 

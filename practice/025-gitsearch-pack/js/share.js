@@ -7,7 +7,7 @@ var keyword = '',
 ;
 
 var searchOption = {
-    limit: 20,
+    limit: 5,
     page: 1
 };
 

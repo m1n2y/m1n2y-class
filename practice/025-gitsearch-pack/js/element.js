@@ -7,4 +7,5 @@ module.exports = {
     loadmore: document.getElementById('loadmore'),
     placeholer: document.getElementById('placeholer'),
     historyList: document.getElementById('history-list'),
+    pagination: document.getElementById('pagination-container'),
 };
