@@ -1,5 +1,6 @@
+var ele = require('./element');
+
 function user(users) {
-    var el = document.getElementById('item-container');
     var html = '';
     users.forEach(function (user) {
         html += '<div class="item">' +
@@ -10,7 +11,7 @@ function user(users) {
             '       </div>' +
             '    </div>';
     });
-    el.innerHTML = html;
+    ele.itemContainer.innerHTML = html;
 }
 
 module.exports = {

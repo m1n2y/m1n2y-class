@@ -92,3 +92,19 @@ h2 {
 .item-container .item .item-info {
     margin-left: 10px;
 }
+
+#history-list {
+    position: absolute;
+    width: 100%;
+    background-color: #EEEFF4;
+    border-radius: 5px;
+    z-index: 1;
+    padding: 5px;
+}
+
+#history-list .history-item:hover,
+#history-list .clear:hover{
+    background-color: #B58590;
+    border-radius: 5px;
+
+}

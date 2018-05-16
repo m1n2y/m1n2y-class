@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <!--<link rel="stylesheet" href="./css/fontawesome-all.css">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="./plugin/history/history.css">
 </head>
 <body>
     <div class="container">
@@ -14,21 +15,13 @@
         <form id="search-form" class="search-form">
             <div class="search-input">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="search here...">
+                <input id="search-input" type="text" placeholder="search here...">
+                <div id="history-list" hidden></div>
             </div>
-            <button type="submit" class="search-button">Search</button>
+            <button type="submit" class="search-button" id="search-button">Search</button>
         </form>
-        <div class="total-amount">Total <b>1200</b> information</div>
-        <div class="item-container" id="item-container">
-            <!--<div class="item">-->
-                <!--<a class="avatar"><img src=""></a>-->
-                <!--<div class="item-info">-->
-                    <!--<div>name</div>-->
-                    <!--<div>repo</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            </div>
-        </div>
+        <div id="total-amount" class="total-amount"></div>
+        <div class="item-container" id="item-container"></div>
     </div>
 
     <script src="./dist/bundle.js"></script>
