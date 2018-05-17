@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<form action="" id="todo-form">
+    <input type="text" name="title" value="aaa">
+    <label for="completed">completed<input type="checkbox" name="completed"></label>
+    <button type="submit">submit</button>
+</form>
+
+<script>
+
+    ;(function () {
+
+        var row = {
+            id: 1,
+            title: 'eat',
+            completed: true
+        };
+
+        function set_form_data(form_selector, data) {
+            var form = document.getElementById(form_selector);
+            for (var key in data) {
+                var datatype = typeof data[key];
+                var ele = form.querySelector(`[name=${key}]`)
+                if (!ele)
+                    continue;
+                switch (datatype) {
+                    case 'string':
+                    case 'number':
+                        ele.value = data[key];
+                        break;
+                    case 'boolean':
+                        ele.checked = data[key];
+                        break;
+                }
+            }
+        }
+
+        set_form_data('todo-form', row);
+
+        function get_form_data(form_selector) {
+            var data = {};
+            var form = document.getElementById(form_selector);
+            var list = form.querySelectorAll('[name]');
+            list.forEach(function (input) {
+                switch (input.nodeName) {
+                    case 'INPUT':
+                        switch (input.type) {
+                            case 'text':
+                            case 'number':
+                            case 'search':
+                            case 'password':
+                                data[input.name] = input.value;
+                                break;
+                            case 'checkbox':
+                            case 'radio':
+                                data[input.name] = input.checked;
+                                break;
+                        }
+                        break;
+                    case 'TEXTAREA':
+                        data[input.name] = input.value;
+                        break;
+                }
+            });
+            return data;
+        }
+
+        // var row = get_form_data('todo-form');
+        // console.log(row);
+
+    })();
+
+</script>
+
+<script src="todo.js"></script>
+<script src="proto-todo.js"></script>
+</body>
+</html>
