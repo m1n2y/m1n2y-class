@@ -10,6 +10,7 @@
 <body>
 
 <form action="" id="todo-form">
+    <input type="hidden" name="id">
     <input type="text" name="title" value="aaa">
     <label for="completed">completed<input type="checkbox" name="completed"></label>
     <button type="submit">submit</button>
@@ -58,6 +59,7 @@
                             case 'number':
                             case 'search':
                             case 'password':
+                            case 'hidden':
                                 data[input.name] = input.value;
                                 break;
                             case 'checkbox':
@@ -77,11 +79,21 @@
         // var row = get_form_data('todo-form');
         // console.log(row);
 
+        //@todo
+        function get_form_data_filter(form_selector) {
+            var data = {};
+            var form = document.querySelector(form_selector);
+            var input = form.querySelector('[name]');
+            input.forEach(function (item) {
+
+            });
+        }
+
     })();
 
 </script>
 
 <script src="todo.js"></script>
-<script src="proto-todo.js"></script>
+<script src="../028-todo-ui/js/proto-todo.js"></script>
 </body>
 </html>
