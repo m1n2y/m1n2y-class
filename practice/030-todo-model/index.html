@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(0, 0, 0, .1);
+            padding: 10px;
+        }
+
+        .row {
+            font-size: 0;
+        }
+
+        .col {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 1rem;
+        }
+
+        #todo-form input,
+        #todo-form button {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        #todo-form input {
+            width: 80%;
+        }
+
+        #todo-form button {
+            width: 20%;
+            border-left: 0;
+        }
+
+        #todo-list .checkbox {
+            width: 10%;
+        }
+
+        #todo-list .detail {
+            width: 60%;
+        }
+
+        #todo-list .tool-set {
+            width: 30%;
+        }
+
+        .tool-set {
+            text-align: right;
+        }
+
+        .tool-set * {
+            padding: 4px;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .todo-item {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .todo-item > * {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Biao Todo</h1>
+    <form id="todo-form" class="row">
+        <input type="hidden" name="id">
+        <input type="text" name="title" class="col" autocomplete="off">
+        <button class="col">添加</button>
+    </form>
+    <div id="todo-list">
+
+        <div class="row todo-item">
+            <div class="col checkbox">
+                <input type="checkbox">
+            </div>
+            <div class="col detail">
+                <div class="title">吃饭</div>
+            </div>
+            <div class="col tool-set">
+                <button>更新</button>
+                <button>删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/Editable.js"></script>
+<script src="./js/Group.js"></script>
+<script src="./js/ToDo.js"></script>
+<script src="./js/Ui.js"></script>
+<script src="./js/index.js"></script>
+<script>
+    var todo = new Todo();
+    console.log(todo);
+</script>
+</body>
+</html>
