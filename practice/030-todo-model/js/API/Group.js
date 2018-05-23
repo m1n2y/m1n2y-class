@@ -3,6 +3,7 @@ function Group(lists, max_id) {
 }
 
 Group.prototype = Object.create(Editable.prototype);
+Group.prototype.constructor = Group;
 
 Group.prototype.add = function (data) {
     this.$add(data);

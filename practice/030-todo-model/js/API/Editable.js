@@ -28,13 +28,13 @@ Editable.prototype.$query = function (id) {
 }
 
 function getIndexByID(arr, id) {
-    arr.findIndex(function (item) {
+    return arr.findIndex(function (item) {
         return item.id == id;
     });
 }
 
 function getRowByID(arr, id) {
-    arr.find(function (item) {
+    return arr.find(function (item) {
         return item.id == id;
     });
 }

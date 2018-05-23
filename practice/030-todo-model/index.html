@@ -102,14 +102,15 @@
     </div>
 </div>
 
-<script src="./js/Editable.js"></script>
-<script src="./js/Group.js"></script>
-<script src="./js/ToDo.js"></script>
-<script src="./js/Ui.js"></script>
+<script src="./js/API/Editable.js"></script>
+<script src="./js/API/Group.js"></script>
+<script src="./js/API/ToDo.js"></script>
+<scripr src="./js/UI/BaseForm.js"></scripr>
+<script src="./js/UI/TaskUi.js"></script>
 <script src="./js/index.js"></script>
 <script>
-    var todo = new Todo();
-    console.log(todo);
+    var ui = new TaskUi('#todo-form', '#todo-list');
+    ui.init();
 </script>
 </body>
 </html>
