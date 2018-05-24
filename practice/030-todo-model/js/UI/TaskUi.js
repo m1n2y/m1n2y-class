@@ -88,11 +88,13 @@ function TaskUi(form_selector, list_selector) {
     this._todo = new Todo([
         {
             id: 1,
-            title: 'eat'
+            title: 'eat',
+            group: 1,
         },
         {
             id: 2,
-            title: 'sleep'
+            title: 'sleep',
+            group: 2
         },
     ], 2);
 
@@ -106,10 +108,21 @@ TaskUi.prototype.init = function () {
     this.activeEvents();
 }
 
-TaskUi.prototype.render = function () {
+TaskUi.prototype.render = function (group_id) {
+    var todos = null;
     this.list.innerHTML = '';
     var _this = this;
-    var todos = this._todo.$query();
+
+    // render by group
+    if (group_id) {
+        todos = this._todo.filterByGroupID(group_id);
+    } else {
+        todos = this._todo.$query(); // render all todos
+    }
+    renderHTML(todos, _this);
+}
+
+function renderHTML(todos, _this) {
     todos.forEach(function (todo) {
         var div = document.createElement('div');
         div.classList.add('row', 'todo-item');

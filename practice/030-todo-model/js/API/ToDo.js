@@ -1,5 +1,5 @@
-function Todo(lists, max_id) {
-    Editable.call(this, lists, max_id);
+function Todo(list, max_id) {
+    Editable.call(this, list, max_id);
 }
 
 Todo.prototype = Object.create(Editable.prototype);
@@ -13,6 +13,8 @@ Todo.prototype.add = function (data) {
         //add
         if (data.title.length > 20)
             return;
+        if (!data.group)
+            data.group = 1;
         this.$add(data);
     }
 }
@@ -30,4 +32,10 @@ Todo.prototype.query = function (id) {
         return this.$query(id);
     }
     return this.$query();
+}
+
+Todo.prototype.filterByGroupID = function (group_id) {
+    return this.list.filter(function (item) {
+        return item.group == group_id;
+    });
 }

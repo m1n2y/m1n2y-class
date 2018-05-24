@@ -205,7 +205,14 @@
 <script>
     var task_ui = new TaskUi('#todo-form', '#todo-list');
     task_ui.init();
-    var group_ui = new GroupUi('#cat-form', '#cat-list');
+
+    var group_ui = new GroupUi({
+        form: '#cat-form', 
+        list: '#cat-list',
+        onItemClick: function (group_id) {
+            task_ui.render(group_id);
+        },
+    });
     group_ui.init();
 
 

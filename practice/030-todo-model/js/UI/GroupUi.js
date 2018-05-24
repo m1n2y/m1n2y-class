@@ -1,9 +1,24 @@
-function GroupUi(form, list) {
+function GroupUi(config) {
+
+    var defaultConfig = {
+        form: null,
+        list: null,
+        onItemClick: null,
+    };
+    config = Object.assign({}, defaultConfig, config);
+    var form = config.form,
+        list = config.list;
+
+    if (config.onItemClick)
+        this.onItemClick = config.onItemClick;
+
     BaseForm.call(this, form);
+
     if (typeof form === 'string')
         form = document.querySelector(form);
     if (typeof list === 'string')
         list = document.querySelector(list);
+
     this.form = form;
     this.list = list;
     this.isUpdating = null; //记录当前是否处于更新状态
@@ -72,6 +87,7 @@ GroupUi.prototype.activeEvents = function () {
         var target = e.target;
         var isUpdate = target.classList.contains('update');
         var isDelete = target.classList.contains('delete');
+        var isGroup = target.classList.contains('group');
         if (isDelete) {
             _this.isUpdating = false;
             var id = target.closest('.cat-item').dataset.id;
@@ -86,6 +102,11 @@ GroupUi.prototype.activeEvents = function () {
             var id = target.closest('.cat-item').dataset.id;
             var row = _this._group.query(id);
             _this.$set_form_data(row);
+        }
+        if (isGroup) {
+            // get click group id and pass out
+            var group_id = target.closest('.cat-item').dataset.id;
+            _this.onItemClick(group_id);
         }
     });
 
@@ -102,7 +123,7 @@ GroupUi.prototype.render = function () {
 
         div.innerHTML = `
             <div class="title">
-                <div>${tag.title}</div>
+                <div class="group">${tag.title}</div>
             </div>
             <div class="tool-set">
                 ${ tag.id == 1 ? '' : '<span class="update">更新</span><span class="delete">删除</span>' }
