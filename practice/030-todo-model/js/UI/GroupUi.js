@@ -108,6 +108,8 @@ GroupUi.prototype.activeEvents = function () {
             var group_id = target.closest('.cat-item').dataset.id;
             _this.onItemClick(group_id);
         }
+        //highlight current group item
+        highlightCurrent(_this.list, target.closest('.cat-item'));
     });
 
 }
@@ -131,4 +133,12 @@ GroupUi.prototype.render = function () {
         `;
         _this.list.appendChild(div);
     });
+}
+
+function highlightCurrent(list, current) {
+    var items = list.querySelectorAll('.cat-item');
+    items.forEach(function (item) {
+        item.classList.remove('active');
+    });
+    current.classList.add('active');
 }

@@ -11,7 +11,7 @@ Todo.prototype.add = function (data) {
         this.update(data.id, data);
     } else {
         //add
-        if (data.title.length > 20)
+        if (data.title.length > 20 || data.title.length <= 0)
             return;
         if (!data.group)
             data.group = 1;

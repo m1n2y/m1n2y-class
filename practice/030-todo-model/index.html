@@ -67,14 +67,21 @@
         }
 
         #todo-form input,
-        #todo-form button {
+        #todo-form button,
+        #todo-form select {
             display: inline-block;
             padding: 10px;
             border: 1px solid rgba(0, 0, 0, .1);
+            height: 40px;
+            font-size: 1rem;
         }
 
         #todo-form input {
-            width: 80%;
+            width: 60%;
+        }
+
+        #todo-form select {
+            width: 20%;
         }
 
         #todo-form button {
@@ -152,6 +159,11 @@
             background: rgba(0, 0, 0, .06);
         }
 
+        .cat-item.active {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
         .cat-item:hover .tool-set {
             display: inline-block;
         }
@@ -187,6 +199,11 @@
             <form id="todo-form" class="row">
                 <input type="hidden" name="id">
                 <input id="todo-input" type="text" name="title" class="col" autocomplete="off">
+                <select name="group">
+                    <option value="1">default</option>
+                    <option value="2">study</option>
+                    <option value="3">daily</option>
+                </select>
                 <button class="col">添加</button>
             </form>
             <div id="todo-list">

@@ -45,6 +45,9 @@ function get_form_data () {
                         break;
                 }
                 break;
+            case 'SELECT':
+                data[item.name] = item.value;
+                break;
             case 'TEXTAREA':
                 data[item.name] = item.value;
                 break;
