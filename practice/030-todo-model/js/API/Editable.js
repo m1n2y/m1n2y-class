@@ -18,7 +18,7 @@ Editable.prototype.$remove = function (id) {
 Editable.prototype.$update = function (id, new_row) {
     var index = getIndexByID(this.list, id);
     var row = getRowByID(this.list, id);
-    this.list[index] = Object.assign(row, new_row);
+    this.list[index] = Object.assign({}, row, new_row);
 }
 
 Editable.prototype.$query = function (id) {

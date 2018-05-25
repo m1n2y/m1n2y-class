@@ -4,6 +4,8 @@ function GroupUi(config) {
         form: null,
         list: null,
         onItemClick: null,
+        onItemRemove: null,
+        onItemAdd: null,
     };
     config = Object.assign({}, defaultConfig, config);
     var form = config.form,
@@ -21,6 +23,7 @@ function GroupUi(config) {
 
     this.form = form;
     this.list = list;
+    this.config = config;
     this.isUpdating = null; //记录当前是否处于更新状态
     this._group = new Group([
         {
@@ -80,6 +83,8 @@ GroupUi.prototype.activeEvents = function () {
             _this.isUpdating = false;
         }
         _this.render();
+        if (_this.config.onItemAdd)
+            _this.config.onItemAdd();
     });
 
     //bind list tools events
@@ -89,9 +94,12 @@ GroupUi.prototype.activeEvents = function () {
         var isDelete = target.classList.contains('delete');
         var isGroup = target.classList.contains('group');
         if (isDelete) {
+            var callback = _this.config.onItemRemove;
             _this.isUpdating = false;
             var id = target.closest('.cat-item').dataset.id;
             _this._group.remove(id);
+            if (callback)
+                callback(id);
             _this.render();
         }
         if (isUpdate) {

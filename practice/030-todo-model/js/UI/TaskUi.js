@@ -27,7 +27,7 @@ function set_form_data(data) {
     }
 };
 
-function get_form_data () {
+function get_form_data() {
     var data = {};
     var input = this.form.querySelectorAll('[name]');
     input.forEach(function (item) {
@@ -56,7 +56,7 @@ function get_form_data () {
     return data;
 };
 
-function clear_form_data () {
+function clear_form_data() {
     //这里不用form.reset是因为reset是恢复到表单原始状态 如果表单有默认值 就不会清空
     var input = this.form.querySelectorAll('[name]');
     input.forEach(function (item) {
@@ -82,12 +82,20 @@ function clear_form_data () {
 }
 
 
+function TaskUi(config) {
+    var defaultConfig = {
+        form: null,
+        list: null,
+        loadGroupSelect: null,
+    };
 
-function TaskUi(form_selector, list_selector) {
+    config = Object.assign({}, defaultConfig, config);
 
-    BaseForm.call(this, form_selector);
+    BaseForm.call(this, config.form);
 
-    this.list = document.querySelector(list_selector);
+    this.list = document.querySelector(config.list);
+    this.groupSelect = this.form.querySelector('[name=group]');
+    this.config = config;
     this._todo = new Todo([
         {
             id: 1,
@@ -114,7 +122,6 @@ TaskUi.prototype.init = function () {
 TaskUi.prototype.render = function (group_id) {
     var todos = null;
     this.list.innerHTML = '';
-    var _this = this;
 
     // render by group
     if (group_id) {
@@ -122,10 +129,29 @@ TaskUi.prototype.render = function (group_id) {
     } else {
         todos = this._todo.$query(); // render all todos
     }
-    renderHTML(todos, _this);
+    renderHTML(todos, this);
+
+    // render group select
+    if (this.config.loadGroupSelect) {
+        var html = '';
+        var data = this.config.loadGroupSelect();
+        data.forEach(function (groupItem) {
+            html += `
+                <option value="${groupItem.id}">${groupItem.title}</option>
+            `;
+        });
+        this.groupSelect.innerHTML = html;
+    }
 }
 
 function renderHTML(todos, _this) {
+    if (todos.length == 0) {
+        var div = document.createElement('div');
+        div.classList.add('todo-item');
+        div.innerHTML = 'nothing here';
+        _this.list.appendChild(div);
+        return;
+    }
     todos.forEach(function (todo) {
         var div = document.createElement('div');
         div.classList.add('row', 'todo-item');

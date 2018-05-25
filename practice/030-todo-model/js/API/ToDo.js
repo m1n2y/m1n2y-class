@@ -39,3 +39,21 @@ Todo.prototype.filterByGroupID = function (group_id) {
         return item.group == group_id;
     });
 }
+
+Todo.prototype.removeByGroupID = function (group_id) {
+    this.list = this.list.filter(function (item) {
+        return item.group != group_id;
+    });
+}
+
+Todo.prototype.changGroupIDto = function (group_id, new_group_id) {
+    var _this = this;
+    var tmp_todos = this.list.filter(function (item) {
+        return item.group == group_id;
+    });
+    tmp_todos.forEach(function (todo) {
+        todo.group = new_group_id;
+        _this.update(todo.id, todo);
+    });
+}
+

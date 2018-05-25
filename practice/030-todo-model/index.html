@@ -220,16 +220,34 @@
 <script src="./js/UI/GroupUi.js"></script>
 <script src="./js/index.js"></script>
 <script>
-    var task_ui = new TaskUi('#todo-form', '#todo-list');
-    task_ui.init();
-
     var group_ui = new GroupUi({
-        form: '#cat-form', 
+        form: '#cat-form',
         list: '#cat-list',
         onItemClick: function (group_id) {
             task_ui.render(group_id);
         },
+        onItemRemove: function (group_id) {
+            if (confirm('delete all todos under this group?'))
+                task_ui._todo.removeByGroupID(group_id);
+            else {
+                task_ui._todo.changGroupIDto(group_id, 1);
+            }
+            task_ui.render();
+        },
+        onItemAdd: function () {
+            task_ui.render(); // update group select option
+        },
     });
+
+    var task_ui = new TaskUi({
+        form: '#todo-form',
+        list: '#todo-list',
+        loadGroupSelect: function () {
+            return group_ui._group.query()
+        },
+    });
+
+    task_ui.init();
     group_ui.init();
 
 
