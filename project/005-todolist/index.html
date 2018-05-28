@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo List</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-size: 1.05rem;
+    }
+
+    body {
+      background-color: #5F767E;
+      color: white;
+    }
+
+    input, button, select {
+      outline: none;
+      line-height: 1.15;
+      display: inline-block;
+      border: 0;
+    }
+
+    .row {
+      display: block;
+      font-size: 0;
+    }
+
+    .col {
+      display: inline-block;
+      font-size: 1rem;
+      vertical-align: top;
+    }
+
+    .item {
+      padding: 10px;
+      border-radius: 5px;
+      margin: 5px 0;
+    }
+
+    .item:hover {
+      background-color: white;
+      color: #34455b;
+    }
+
+    .block {
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .side-menu,
+    .main {
+      background-color: #34455b;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .side-menu {
+      width: 29%;
+    }
+
+    .side-menu .add {
+      width: 100%;
+    }
+
+    .side-menu .tag-form input {
+      width: 100%;
+    }
+
+    .main {
+      width: 70%;
+      margin-left: 1%;
+    }
+
+    .tag-form input,
+    .todo-form input,
+    .todo-form button,
+    .todo-form select {
+      background-color: white;
+      border-radius: 5px;
+      padding: 10px;
+      height: 40px;
+    }
+
+    .todo-form input {
+      width: 53%;
+    }
+
+    .todo-form input:focus {
+
+    }
+
+    .todo-form select {
+      width: 23%;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      margin: 0 2%;
+    }
+
+    .todo-form button {
+      width: 20%;
+    }
+
+    .todo-list {
+      margin-top: 30px;
+    }
+
+    .todo-item .title {
+      width: 70%;
+    }
+
+    .todo-item .tool {
+      width: 30%;
+      text-align: right;
+    }
+
+    .todo-item .tool span,
+    .tag-form .tool span {
+      padding: 5px;
+      font-size: 0.8rem;
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+    }
+
+    .tag-form .tool {
+      text-align: right;
+      padding: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container row">
+    <h1 class="block">Todo List</h1>
+    <div class="col side-menu">
+      <div class="tag-list">
+        <div class="tag item" style="background-color: #5eb8db;">All</div>
+        <div class="tag item">ungroup</div>
+        <div class="tag item">study</div>
+        <div class="tag item">daily</div>
+        <div class="tag item">sports</div>
+      </div>
+      <form class="tag-form">
+        <input type="hidden" name="id">
+        <input type="text" name="title">
+        <div class="tool">
+          <span action="add">add</span>
+          <span action="cancel">cancel</span>
+        </div>
+      </form>
+      <button id="add" class="add item">+</button>
+    </div>
+    <div class="col main">
+      <form class="todo-form row">
+        <input type="hidden" name="id">
+        <input class="col" type="text" name="title" autofocus autocomplete="off">
+        <select class="col" name="tag">
+          <option value="1">ungroup</option>
+        </select>
+        <button class="col" type="submit">Submit</button>
+      </form>
+      <div class="todo-list">
+        <div class="row item todo-item"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./dist/bundle.js"></script>
+
+</body>
+</html>
