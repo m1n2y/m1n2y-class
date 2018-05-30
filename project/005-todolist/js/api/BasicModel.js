@@ -21,7 +21,7 @@ BasicModel.prototype.$$read = function () {
 }
 
 BasicModel.prototype.$$find = function (id) {
-    this.list.find(function (item) {
+    return this.list.find(function (item) {
         return item.id == id;
     });
 }

@@ -28,8 +28,10 @@ ToDo.prototype.remove = function (id) {
 }
 
 ToDo.prototype.query = function (id) {
-    if (id)
+    if (id) {
         return this.$$find(id);
+    }
+
     return this.$$read();
 }
 

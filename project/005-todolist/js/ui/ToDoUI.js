@@ -18,7 +18,7 @@ function TodoUI(config) {
     this.form = config.form;
     this.list = config.list;
 
-    this.data = [
+    var data = [
         {
             id: 1,
             title: 'eat',
@@ -38,7 +38,8 @@ function TodoUI(config) {
             completed: false,
         },
     ];
-    this._todo = new Todo(this.data, 3);
+    this._todo = new Todo(data, 3);
+    this.data = this._todo.query();
 
 }
 
@@ -50,9 +51,11 @@ TodoUI.prototype.init = function() {
     this.bindEvents();
 }
 
-TodoUI.prototype.render = function () {
+TodoUI.prototype.render = function (id) {
     this.list.innerHTML = '';
     var _this = this;
+    // if (id)
+    //     this.data = this._todo.queryByTagID(id);
     this.data.forEach(function (row) {
         var div = document.createElement('div');
         div.classList.add('row', 'item', 'todo-item');
@@ -85,17 +88,13 @@ TodoUI.prototype.bindEvents = function() {
     this.list.addEventListener('click', function (e) {
         var target = e.target;
         if (target.dataset.action == 'update') {
-            var todo_item = target.closest('.todo-item');
-            var row = {
-                id: todo_item.dataset.id,
-                title: todo_item.querySelector('.title').innerHTML,
-                tag: todo_item.dataset.tag,
-            };
+            var id = target.closest('.todo-item').dataset.id;
+            var row = _this._todo.query(id);
+            console.log(row);
             _this.$$setFormData(row);
         }
         if (target.dataset.action == 'remove') {
-            var todo_item = target.closest('.todo-item');
-            var id = todo_item.dataset.id;
+            var id = target.closest('.todo-item').dataset.id;
             _this._todo.remove(id);
             _this.render();
         }

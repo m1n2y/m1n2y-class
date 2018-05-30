@@ -43,6 +43,11 @@
       color: #34455b;
     }
 
+    .item:hover .tool span {
+      background-color: #34455b;
+      color: white;
+    }
+
     .block {
       font-size: 1.4rem;
       text-align: center;
@@ -61,7 +66,7 @@
     }
 
     .side-menu {
-      width: 29%;
+      width: 34%;
     }
 
     .side-menu .add {
@@ -73,7 +78,7 @@
     }
 
     .main {
-      width: 70%;
+      width: 65%;
       margin-left: 1%;
     }
 
@@ -119,8 +124,27 @@
       text-align: right;
     }
 
+    .tag .title {
+      width: 53%;
+    }
+
+    .tag.active {
+      background-color: #5eb8db;
+    }
+
+    .tag:hover .tool {
+      display: inline-block;
+    }
+
+    .tag .tool {
+      width: 47%;
+      text-align: right;
+      display: none;
+    }
+
     .todo-item .tool span,
-    .tag-form .tool span {
+    .tag-form .tool span,
+    .tag .tool span {
       padding: 5px;
       font-size: 0.8rem;
       background-color: white;
@@ -140,18 +164,21 @@
     <h1 class="block">Todo List</h1>
     <div class="col side-menu">
       <div class="tag-list">
-        <div class="tag item" style="background-color: #5eb8db;">All</div>
-        <div class="tag item">ungroup</div>
-        <div class="tag item">study</div>
-        <div class="tag item">daily</div>
-        <div class="tag item">sports</div>
+        <div class="tag item active">All</div>
+        <div class="row tag item">
+          <span class="col title">ungroup</span>
+          <span class="col tool">
+                <span data-action="update">update</span>
+                <span data-action="remove">delete</span>
+          </span>
+        </div>
       </div>
-      <form class="tag-form">
+      <form class="tag-form" hidden>
         <input type="hidden" name="id">
-        <input type="text" name="title">
+        <input type="text" name="title" autocomplete="off">
         <div class="tool">
-          <span action="add">add</span>
-          <span action="cancel">cancel</span>
+          <span data-action="add">add</span>
+          <span data-action="cancel">cancel</span>
         </div>
       </form>
       <button id="add" class="add item">+</button>
