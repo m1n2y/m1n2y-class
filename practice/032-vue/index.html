@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div id="root" class="row">
+    <div class="col sidebar">
+        <div class="sidebar-item"
+             v-if="memo.title"
+             @click="current = memo"
+             v-for="memo in memo_list"
+        >{{memo.title}}</div>
+        <button class="block" @click="add()">+</button>
+    </div>
+    <div class="col main">
+        <div v-if="current" class="editor">
+            <input v-model="current.title" type="text" placeholder="标题">
+            <textarea v-model="current.content" placeholder="内容"></textarea>
+            <button @click="current = null" class="block">close</button>
+        </div>
+        <div v-else>click one memo or <button @click="current = {}">add new one</button></div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./index.js"></script>
+
+</body>
+</html>
